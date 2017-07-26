@@ -57,14 +57,14 @@ class Address(dict):
 
     @property
     def vacant(self):
-        if self['analysis'].has_key('dpv_vacant'):
+        if 'dpv_vacant' in self['analysis']:
             return 1 if self['analysis']['dpv_vacant'] == 'Y' else 0
         return None
 
     # function that checks if fields exist, returns None if not
     def lookup(self, group, field):
-        if self.has_key(group):
-            if self[group].has_key(field):
+        if group in self:
+            if field in self[group]:
                 return self[group][field]
             logging.getLogger('smarystreets').error('[group] {} [field] {}'.format(group, field))
             return None
@@ -74,87 +74,59 @@ class Address(dict):
     @property
     def addressee(self):
         """Returns addressee"""
-        if self.has_key('addressee'):
-            return self['addressee']
-        return None
+        return self.get('addressee', None)
 
     @property
     def delivery_line_1(self):
-        if self.has_key('delivery_line_1'):
-            return self['delivery_line_1']
-        return None
+        return self.get('delivery_line_1', None)
 
     @property
     def delivery_line_2(self):
-        if self.has_key('delivery_line_2'):
-            return self['delivery_line_2']
-        return None
+        return self.get('delivery_line_2', None)
 
     @property
     def last_line(self):
-        if self.has_key('last_line'):
-            return self['last_line']
-        return None
+        return self.get('last_line', None)
 
     @property
     def footnotes(self):
-        if self['analysis'].has_key('footnotes'):
-            return self['analysis']['footnotes']
-        return None
+        return self['analysis'].get('footnotes', None)
 
     @property
     def analysis_active(self):
-        if self['analysis'].has_key('active'):
-            return self['analysis']['active']
-        return None
+        return self['analysis'].get('active', None)
 
     @property
     def analysis_dpv_vacant(self):
-        if self['analysis'].has_key('dpv_vacant'):
-            return self['analysis']['dpv_vacant']
-        return None
+        return self['analysis'].get('dpv_vacant', None)
 
     @property
     def analysis_dpv_cmra(self):
-        if self['analysis'].has_key('dpv_cmra'):
-            return self['analysis']['dpv_cmra']
-        return None
+        return self['analysis'].get('dpv_cmra', None)
 
     @property
     def components_street_suffix(self):
-        if self['components'].has_key('street_suffix'):
-            return self['components']['street_suffix']
-        return None
+        return self['components'].get('street_suffix', None)
 
     @property
     def primary_number(self):
-        if self['components'].has_key('primary_number'):
-            return self['components']['primary_number']
-        return None
+        return self['components'].get('primary_number', None)
 
     @property
     def metadata_dst(self):
-        if self['metadata'].has_key('dst'):
-            return self['metadata']['dst']
-        return None
+        return self['metadata'].get('dst', None)
 
     @property
     def metadata_county_name(self):
-        if self['metadata'].has_key('county_name'):
-            return self['metadata']['county_name']
-        return None
+        return self['metadata'].get('county_name', None)
 
     @property
     def metadata_congressional_district(self):
-        if self['metadata'].has_key('congressional_district'):
-            return self['metadata']['congressional_district']
-        return None
+        return self['metadata'].get('congressional_district', None)
 
     @property
     def metadata_county_fips(self):
-        if self['metadata'].has_key('county_fips'):
-            return self['metadata']['county_fips']
-        return None
+        return self['metadata'].get('county_fips', None)
 
 
 class AddressCollection(list):
