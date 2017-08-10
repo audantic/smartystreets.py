@@ -87,7 +87,7 @@ class AsyncClient(Client):
         status_codes = {}
         addresses = AddressCollection([])
         for response in responses:
-            if response.status_code not in status_codes.keys():
+            if response.status_code not in status_codes:
                 status_codes[response.status_code] = 1
             else:
                 status_codes[response.status_code] += 1
@@ -101,11 +101,11 @@ class AsyncClient(Client):
                 raise ERROR_CODES[401]
 
         # The return value or exception is simple if it is consistent.
-        if len(status_codes.keys()) == 1:
+        if len(status_codes) == 1:
             if 200 in status_codes:
                 return addresses, status_codes
             else:
-                raise ERROR_CODES.get(status_codes.keys()[0], SmartyStreetsError)
+                raise ERROR_CODES.get(list(status_codes.keys())[0], SmartyStreetsError)
 
         # For any other mix not really sure of the best way to handle it. If it's a mix of 200
         # and error codes, then returning the resultant addresses and status code dictionary
