@@ -113,6 +113,26 @@ class Address(dict):
         return self['components'].get('primary_number', None)
 
     @property
+    def components_street_name(self):
+        return self['components'].get('street_name', None)
+
+    @property
+    def components_city_name(self):
+        return self['components'].get('city_name', None)
+
+    @property
+    def components_state_abbreviation(self):
+        return self['components'].get('state_abbreviation', None)
+
+    @property
+    def components_zipcode(self):
+        return self['components'].get('zipcode', None)
+
+    @property
+    def components_plus4_code(self):
+        return self['components'].get('plus4_code', None)
+
+    @property
     def metadata_dst(self):
         return self['metadata'].get('dst', None)
 
