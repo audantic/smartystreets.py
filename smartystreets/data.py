@@ -66,7 +66,7 @@ class Address(dict):
         if group in self:
             if field in self[group]:
                 return self[group][field]
-            logging.getLogger('smarystreets').error('[group] {} [field] {}'.format(group, field))
+            # logging.getLogger('smarystreets').error('[group] {} [field] {}'.format(group, field))
             return None
         logging.getLogger('smarystreets').error('[group] {}'.format(group))
         return None
