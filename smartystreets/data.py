@@ -68,7 +68,7 @@ class Address(dict):
                 return self[group][field]
             # logging.getLogger('smarystreets').error('[group] {} [field] {}'.format(group, field))
             return None
-        logging.getLogger('smarystreets').error('[group] {}'.format(group))
+        # logging.getLogger('smarystreets').error('[group] {}'.format(group))
         return None
 
     @property
